@@ -33,9 +33,10 @@ def main():
         pygame.display.flip()
 
         # tick clock 60 FPS
-        clock.tick(60)
+        clock.tick(60) # returns the time in ms that has passed since last game loop 
+        # dt_temp = clock.tick(60)
         dt = clock.tick(60) / 1000
-        # print(f"{dt}")
+        # print(f"{dt_temp}, {dt}")
 
 if __name__ == "__main__":
     main()
