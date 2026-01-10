@@ -17,6 +17,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # start game loop
     while True:
         # log game state
         log_state()
