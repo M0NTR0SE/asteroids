@@ -18,7 +18,7 @@ class Asteroid(CircleShape):
             return
         else:
             # asteroid splits
-            log_event("asteroid split")
+            log_event("asteroid_split")
 
             # set angle, and radius for new asteroids from split
             split_angle = random.uniform(20, 50)
