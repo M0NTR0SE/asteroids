@@ -12,8 +12,10 @@ Built in the context of boot.dev's OOP Python Course.
 - Score tracking 
     - Reverse scoring biggest to smallest? Ex: 250, 500, 1000. 
     - Scoring based on the speed of the asteroid? Ex: smallest asteroids that began as biggest are highest value.
-- Shooting rate limit power-up
+- [Shooting rate limit power-up](#shooting-rate-limit-power-up)
 - Shield (extra life)
 - Shotgun weapon
     - Spread 3-5 shots instead of one
 - Player acceleration
+
+# Shooting rate limit power-up

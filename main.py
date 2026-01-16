@@ -45,7 +45,7 @@ def main():
     asteroid_field = AsteroidField()
     
     # instantiate powerups
-    megamode = MegaMode(x_center, y_center)
+    megamode = MegaMode(player.position.x + 100, player.position.y)
 
 
     # start game loop
@@ -82,6 +82,7 @@ def main():
         # check for powerups
         if player.collides_with(megamode):
             player.power_upped()
+            megamode.kill()
 
         # draw elements
         for d in drawable:
