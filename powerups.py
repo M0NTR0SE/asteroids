@@ -1,9 +1,19 @@
 import pygame
 import random
 from circleshape import CircleShape
-from constants import POWERUP_RADIUS
+from constants import POWERUP_RADIUS, LINE_WIDTH, SCREEN_WIDTH, SCREEN_HEIGHT
 
-class MegaMode(CirlceShape):
-    def __init__(self, x, y, radius):
-        super().__init__(x, y, radius)
-        
+class MegaMode(CircleShape):
+    def __init__(self, x, y):
+        super().__init__(x, y, POWERUP_RADIUS)
+        self.x = x
+        self.y = y + 50
+
+    def draw(self, screen):
+        # draw reactangle
+
+        pygame.draw.rect(screen, "red", (self.x, self.y, POWERUP_RADIUS, POWERUP_RADIUS), LINE_WIDTH)
+        # print("megamode has been drawn")
+
+    def update(self, dt):
+        pass

@@ -8,7 +8,7 @@ class Player(CircleShape):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.shot_rate_limit = 0
-        self.mega_mode = True
+        self.mega_mode = False
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -42,10 +42,7 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(-dt)
         if keys[pygame.K_SPACE]:
-            if self.mega_mode == True:
-                self.mega()
-            else:
-                self.shoot()
+            self.shoot()
 
         self.shot_rate_limit -= dt
     
@@ -56,14 +53,21 @@ class Player(CircleShape):
             rotated_shot = shot_velocity.rotate(self.rotation)
             rotated_shot_with_speed = rotated_shot * PLAYER_SHOOT_SPEED
             shot.velocity += rotated_shot_with_speed
-            self.shot_rate_limit = PLAYER_SHOOT_COOLDOWN_SECONDS
 
-    def mega(self):
-       if self.shot_rate_limit <= 0:
-            shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
-            shot_velocity = pygame.Vector2(0,1)
-            rotated_shot = shot_velocity.rotate(self.rotation)
-            rotated_shot_with_speed = rotated_shot * PLAYER_SHOOT_SPEED
-            shot.velocity += rotated_shot_with_speed
-            self.shot_rate_limit = PLAYER_SHOOT_MEGA_MODE 
+            if self.mega_mode == True:
+               self.shot_rate_limit = PLAYER_SHOOT_MEGA_MODE 
+            else:
+                self.shot_rate_limit = PLAYER_SHOOT_COOLDOWN_SECONDS
+    
+    def power_upped(self):
+        self.mega_mode = True
+
+    # def mega(self):
+    #    if self.shot_rate_limit <= 0:
+    #         shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+    #         shot_velocity = pygame.Vector2(0,1)
+    #         rotated_shot = shot_velocity.rotate(self.rotation)
+    #         rotated_shot_with_speed = rotated_shot * PLAYER_SHOOT_SPEED
+    #         shot.velocity += rotated_shot_with_speed
+    #         self.shot_rate_limit = PLAYER_SHOOT_MEGA_MODE 
 

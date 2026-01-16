@@ -6,6 +6,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+from powerups import MegaMode
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -33,14 +34,19 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
     Shot.containers = (shots, updatable, drawable)
-
-    # instantiate asteroid field
-    asteroid_field = AsteroidField()
+    MegaMode.containers = (drawable)
 
     # instantiate player
     x_center = SCREEN_WIDTH / 2
     y_center = SCREEN_HEIGHT / 2
     player = Player(x_center, y_center)
+
+    # instantiate asteroid field
+    asteroid_field = AsteroidField()
+    
+    # instantiate powerups
+    megamode = MegaMode(x_center, y_center)
+
 
     # start game loop
     while True:
@@ -72,6 +78,10 @@ def main():
                     log_event("asteroid_shot")
                     a.split()
                     s.kill()
+
+        # check for powerups
+        if player.collides_with(megamode):
+            player.power_upped()
 
         # draw elements
         for d in drawable:
