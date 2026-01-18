@@ -12,6 +12,7 @@ def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
+    # print(f"{pygame.font.get_fonts()}")
 
     # initialize game
     pygame.init()
@@ -49,6 +50,16 @@ def main():
 
     # asteroid killed counter
     asteroid_killed = 0
+
+    # text
+    # colours
+    white = (255, 255, 255)
+
+    # text generate
+    melon_pop_font = pygame.font.Font('melon pop.ttf', 32)
+    score = melon_pop_font.render(f"Score: {asteroid_killed}", True, white)
+    score_rect = score.get_rect()
+    score_rect.center = (1080, 600)
 
     # start game loop
     while True:
@@ -96,6 +107,10 @@ def main():
             if player.collides_with(megamode):
                 player.power_upped()
                 megamode.kill()
+
+        # write text to screen
+        score = melon_pop_font.render(f"Score: {asteroid_killed}", True, white)
+        screen.blit(score, score_rect)
 
         # draw elements
         for d in drawable:
