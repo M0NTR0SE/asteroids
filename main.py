@@ -59,7 +59,7 @@ def main():
     melon_pop_font = pygame.font.Font('melon pop.ttf', 32)
     score = melon_pop_font.render(f"Score: {asteroid_killed}", True, white)
     score_rect = score.get_rect()
-    score_rect.center = (1080, 600)
+    score_rect.center = (1180, 40)
 
     # start game loop
     while True:

@@ -9,13 +9,24 @@ Built in the context of boot.dev's OOP Python Course.
 - Asteroid destruction, and splitting. 
 
 **Self-directed roadmap:**
-- Score tracking 
+- [Score tracking](#score-tracking) 
     - Reverse scoring biggest to smallest? Ex: 250, 500, 1000. 
     - Scoring based on the speed of the asteroid? Ex: smallest asteroids that began as biggest are highest value.
-- [Shooting rate limit power-up](#shooting-rate-limit-power-up)
+- [Powerups](#powerups)
+    - [Mega mode](#mega-mode)
+    - [Shotgun mode](#shotgun-mode)
+        - Spread 3-5 shots instead of one
 - Shield (extra life)
-- Shotgun weapon
-    - Spread 3-5 shots instead of one
 - Player acceleration
 
-# Shooting rate limit power-up
+# Powerups
+## Mega mode
+- Reduces rate limit, increasing fire rate. 
+- Appears after killing 5 asteroids.
+    - **Roadmap:** Evolve this feature to track amount of small, 2nd tier asteroids hit, and appear after crossing threshold.
+
+## Shotgun mode
+- 3 shot spread
+
+# Score tracking
+- Tracking defaults to +1 for every asteroid kill
