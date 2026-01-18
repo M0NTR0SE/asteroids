@@ -78,11 +78,19 @@ def main():
         updatable.update(dt)
 
         # check for collisions with the player
+        print(f"{dt}, player invince window = {player.invincibility_window}")
         for a in asteroids:
-            if a.collides_with(player):
+            if a.collides_with(player) and player.invincibility_window <= 0:
                 log_event("player_hit")
-                print("Game over!")
-                sys.exit()
+                if player.get_lives() <= 1:
+                    print("Game over!")
+                    sys.exit()
+                
+                player.invincible()
+                player.remove_life()
+                a.split()
+                print(f"Keep going! Lives remaining: {player.get_lives()}")
+
 
         # check for collisions between asteroids and shots
         for a in asteroids:

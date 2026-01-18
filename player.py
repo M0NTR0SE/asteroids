@@ -9,6 +9,8 @@ class Player(CircleShape):
         self.rotation = 0
         self.shot_rate_limit = 0
         self.mega_mode = False
+        self.__lives = 3
+        self.invincibility_window = 0
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -45,6 +47,7 @@ class Player(CircleShape):
             self.shoot()
 
         self.shot_rate_limit -= dt
+        self.invincibility_window -= dt
     
     def shoot(self):
         if self.shot_rate_limit <= 0:
@@ -61,6 +64,18 @@ class Player(CircleShape):
     
     def power_upped(self):
         self.mega_mode = True
+
+    def get_lives(self):
+        return self.__lives
+    
+    def add_life(self):
+        self.__lives += 1
+    
+    def remove_life(self):
+        self.__lives -= 1
+
+    def invincible(self):
+        self.invincibility_window = 0.7
 
     # def mega(self):
     #    if self.shot_rate_limit <= 0:
