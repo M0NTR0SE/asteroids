@@ -45,8 +45,10 @@ def main():
     asteroid_field = AsteroidField()
     
     # instantiate powerups
-    megamode = MegaMode(player.position.x + 100, player.position.y)
+    # megamode = MegaMode(player.position.x + 100, player.position.y)
 
+    # asteroid killed counter
+    asteroid_killed = 0
 
     # start game loop
     while True:
@@ -76,13 +78,24 @@ def main():
             for s in shots:
                 if s.collides_with(a):
                     log_event("asteroid_shot")
+                    # kill asteroid that was hit by shot
                     a.split()
+                    # track the amount of asteroids killed
+                    asteroid_killed += 1
+                    print(f"Asteroids killed: {asteroid_killed}")
+
+                    # kill shot that hit asteroid
                     s.kill()
 
+                    if asteroid_killed == 5:
+                        megamode = MegaMode(player.position.x + 100, player.position.y)
+
+
         # check for powerups
-        if player.collides_with(megamode):
-            player.power_upped()
-            megamode.kill()
+        if asteroid_killed >= 5:
+            if player.collides_with(megamode):
+                player.power_upped()
+                megamode.kill()
 
         # draw elements
         for d in drawable:
