@@ -15,3 +15,16 @@ class MegaMode(CircleShape):
 
     def update(self, dt):
         pass
+
+class ShotgunMode(CircleShape):
+    def __init__(self, x, y):
+        super().__init__(x, y, POWERUP_RADIUS)
+
+    def draw(self, screen):
+        # draw reactangle
+
+        pygame.draw.rect(screen, "blue", (self.position.x, self.position.y, POWERUP_RADIUS, POWERUP_RADIUS), LINE_WIDTH)
+        # print("megamode has been drawn")
+
+    def update(self, dt):
+        pass

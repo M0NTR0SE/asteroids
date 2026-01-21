@@ -9,6 +9,7 @@ class Player(CircleShape):
         self.rotation = 0
         self.shot_rate_limit = 0
         self.mega_mode = False
+        self.shotgun_mode = False
         self.__lives = 3
         self.invincibility_window = 0
 
@@ -57,13 +58,32 @@ class Player(CircleShape):
             rotated_shot_with_speed = rotated_shot * PLAYER_SHOOT_SPEED
             shot.velocity += rotated_shot_with_speed
 
+            if self.shotgun_mode == True:
+                self.shotgun(shot_velocity)
             if self.mega_mode == True:
                self.shot_rate_limit = PLAYER_SHOOT_MEGA_MODE 
             else:
                 self.shot_rate_limit = PLAYER_SHOOT_COOLDOWN_SECONDS
+
+    def shotgun(self, shot_velocity):
+        shot_left = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+        shot_right = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+
+        l_rotated_shot = shot_velocity.rotate(self.rotation - 30)
+        r_rotated_shot = shot_velocity.rotate(self.rotation + 30)
+
+        l_rotated_shot_w_speed = l_rotated_shot * PLAYER_SHOOT_SPEED
+        r_rotated_shot_w_speed = r_rotated_shot * PLAYER_SHOOT_SPEED 
+
+        shot_left.velocity += l_rotated_shot_w_speed
+        shot_right.velocity += r_rotated_shot_w_speed
+
     
-    def power_upped(self):
+    def megamode(self):
         self.mega_mode = True
+
+    def shotgunmode(self):
+        self.shotgun_mode = True
 
     def get_lives(self):
         return self.__lives

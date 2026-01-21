@@ -6,7 +6,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
-from powerups import MegaMode
+from powerups import MegaMode, ShotgunMode
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -78,7 +78,7 @@ def main():
         updatable.update(dt)
 
         # check for collisions with the player
-        print(f"{dt}, player invince window = {player.invincibility_window}")
+        # print(f"{dt}, player invince window = {player.invincibility_window}")
         for a in asteroids:
             if a.collides_with(player) and player.invincibility_window <= 0:
                 log_event("player_hit")
@@ -108,13 +108,20 @@ def main():
 
                     if asteroid_killed == 5:
                         megamode = MegaMode(player.position.x + 100, player.position.y)
+                    if asteroid_killed == 10:
+                        shotgunmode = ShotgunMode(player.position.x - 100, player.position.y)
 
 
         # check for powerups
         if asteroid_killed >= 5:
             if player.collides_with(megamode):
-                player.power_upped()
+                player.megamode()
                 megamode.kill()
+
+        if asteroid_killed >= 10:
+            if player.collides_with(shotgunmode):
+                player.shotgunmode()
+                shotgunmode.kill()
 
         # write text to screen
         score = melon_pop_font.render(f"Score: {asteroid_killed}", True, white)
