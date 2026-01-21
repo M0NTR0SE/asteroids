@@ -36,6 +36,7 @@ def main():
     AsteroidField.containers = (updatable)
     Shot.containers = (shots, updatable, drawable)
     MegaMode.containers = (drawable)
+    ShotgunMode.containers = (drawable)
 
     # instantiate player
     x_center = SCREEN_WIDTH / 2
@@ -113,12 +114,12 @@ def main():
 
 
         # check for powerups
-        if asteroid_killed >= 5:
+        if player.mega_mode == False and asteroid_killed >= 5:
             if player.collides_with(megamode):
                 player.megamode()
                 megamode.kill()
 
-        if asteroid_killed >= 10:
+        if player.shotgun_mode == False and asteroid_killed >= 10:
             if player.collides_with(shotgunmode):
                 player.shotgunmode()
                 shotgunmode.kill()

@@ -23,7 +23,7 @@ class ShotgunMode(CircleShape):
     def draw(self, screen):
         # draw reactangle
 
-        pygame.draw.rect(screen, "blue", (self.position.x, self.position.y, POWERUP_RADIUS, POWERUP_RADIUS), LINE_WIDTH)
+        pygame.draw.rect(screen, "green", (self.position.x, self.position.y, POWERUP_RADIUS, POWERUP_RADIUS), LINE_WIDTH)
         # print("megamode has been drawn")
 
     def update(self, dt):

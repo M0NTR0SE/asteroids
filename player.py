@@ -77,6 +77,7 @@ class Player(CircleShape):
 
         shot_left.velocity += l_rotated_shot_w_speed
         shot_right.velocity += r_rotated_shot_w_speed
+        
 
     
     def megamode(self):
@@ -84,6 +85,7 @@ class Player(CircleShape):
 
     def shotgunmode(self):
         self.shotgun_mode = True
+        print("shotgunmode activated")
 
     def get_lives(self):
         return self.__lives
